@@ -1,0 +1,23 @@
+{
+  "name": "javascript-blockchain",
+  "version": "1.0.0",
+  "description": "This is a simple blockchain application written in javascript",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abidaks/javascript-blockchain.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "blockchain"
+  ],
+  "author": "Muhammad Abid <mohdabid.aks@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "hash.js": "^1.1.4"
+  }
+}
