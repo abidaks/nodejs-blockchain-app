@@ -1,5 +1,5 @@
 {
-  "name": "javascript-blockchain",
+  "name": "nodejs-blockchain-app",
   "version": "1.0.0",
   "description": "This is a simple blockchain application written in javascript",
   "main": "main.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abidaks/javascript-blockchain.git"
+    "url": "git+https://github.com/abidaks/nodejs-blockchain-app.git"
   },
   "keywords": [
     "node",
