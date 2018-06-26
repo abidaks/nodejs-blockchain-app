@@ -7,6 +7,11 @@ class Transaction{
 		this.sender = sender;
 		this.receiver = receiver;
 		this.amount = amount;
+		this.fees = this.transactionFee();
+	}
+	
+	transactionFee(){
+		return this.amount*0.01;
 	}
 }
 
@@ -61,10 +66,15 @@ class bankBlockchain{
 		
 		console.log("block mined successfully...");
 		
+		var transactionFeeReward = 0;
+		for(const transaction of this.pendingTransactions){
+			transactionFeeReward += transaction.fees;
+		}
+		
 		this.bankChain.push(block);
 		
 		this.pendingTransactions = [
-			new Transaction(null, rewardAddress, this.miningReward)
+			new Transaction(null, rewardAddress, this.miningReward+transactionFeeReward)
 		];
 	}
 	
