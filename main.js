@@ -56,7 +56,7 @@ class bankBlockchain{
 	}
 	
 	minePendingTransactions(rewardAddress){
-		var block = new bankBlock(Date.now(), this.pendingTransactions);
+		var block = new bankBlock(Date.now(), this.pendingTransactions, this.getLastBlock().hash);
 		block.mineBankBlock(this.difficulty);
 		
 		console.log("block mined successfully...");
@@ -111,16 +111,17 @@ var BankCoin = new bankBlockchain();
 BankCoin.generateGenesisBlock();
 
 console.log("block 1 mining.....");
-BankCoin.addTransactions(new Transaction('sender1', 'reciever1', 100));
-BankCoin.minePendingTransactions('miner1');
+BankCoin.addTransactions(new Transaction('sender', 'reciever', 100));
+BankCoin.minePendingTransactions('miner');
 
 console.log("block 2 mining.....");
-BankCoin.addTransactions(new Transaction('reciever1', 'sender1', 50));
+BankCoin.addTransactions(new Transaction('reciever', 'sender', 50));
 BankCoin.minePendingTransactions('miner2');
 
 
-console.log("reciever1 balance is "+BankCoin.getBalanceOfAddress('reciever1'));
-console.log("miner1 balance is "+BankCoin.getBalanceOfAddress('miner1'));
-console.log("sender1 balance is "+BankCoin.getBalanceOfAddress('sender1'));
-
+console.log("\n\n");
+console.log("reciever balance is "+BankCoin.getBalanceOfAddress('reciever'));
+console.log("miner balance is "+BankCoin.getBalanceOfAddress('miner'));
+console.log("sender balance is "+BankCoin.getBalanceOfAddress('sender'));
+console.log("\n\n");
 console.log(JSON.stringify(BankCoin, null, 4));
