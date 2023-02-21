@@ -1,0 +1,45 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const Blockchain = require('./blockchain');
+
+const app = express();
+const port = 3000;
+const blockchain = new Blockchain();
+
+app.use(bodyParser.json());
+
+// Endpoint for retrieving the entire blockchain
+app.get('/blockchain', (req, res) => {
+  res.json(blockchain.chain);
+});
+
+// Endpoint for adding a new block to the chain
+app.post('/blockchain', (req, res) => {
+  const data = req.body.data;
+  blockchain.addBlock(data);
+  res.json({ message: 'Block added to the chain' });
+});
+
+// Endpoint for validating the integrity of the chain
+app.get('/blockchain/validate', (req, res) => {
+  const isValid = blockchain.validateChain();
+  if (isValid) {
+    res.json({ message: 'The blockchain is valid' });
+  } else {
+    res.status(500).json({ error: 'The blockchain is not valid' });
+  }
+});
+
+// Start the web server
+app.listen(port, () => {
+  console.log(`Web server listening on port ${port}`);
+});
+
+
+
+$ node server.js
+Web server listening on port 3000
+
+$ curl -X POST -H "Content-Type: application/json" -d '{"data":"Hello, kidus!"}' http://localhost:3000/blockchain
+{"message":"Block added to the chain"}
+

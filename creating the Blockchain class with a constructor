@@ -1,0 +1,24 @@
+class Blockchain {
+  constructor() {
+    this.chain = [this.createGenesisBlock()];
+  }
+
+  createGenesisBlock() {
+    return new Block(0, Date.now(), 'Genesis block', '0');
+  }
+
+  addBlock(data) {
+    const previousBlock = this.chain[this.chain.length - 1];
+    const index = previousBlock.index + 1;
+    const timestamp = Date.now();
+    const previousHash = previousBlock.hash;
+    const block = new Block(index, timestamp, data, previousHash);
+    this.chain.push(block);
+  }
+}
+
+
+const blockchain = new Blockchain();
+blockchain.addBlock('Hello, Kidus!');
+console.log(blockchain.chain);
+// Output: [Block {...}, Block {...}]
